@@ -34,9 +34,10 @@ void print_stack (stack_item * si) {
 }
 
 comand_stack_item * parse_input(char * input_file) {
+	
 	FILE * f = fopen(input_file, "r");
 	if (!f) {
-		printf("Invalid file name.\n");
+		printf("Failed to read input file.\n");
 		exit(0);	
 	}
 
@@ -69,6 +70,7 @@ comand_stack_item * parse_input(char * input_file) {
 		char * val = strstr(line, ".");
 		int string_length = strlen(line) - strlen(val);
 
+		new-> comand_id = BASE;
 		//enum comands {BASE, PUSH, ADD, SUB, MULT, DIV, BRANCH, PRINT};
 		if (strncmp(line, "PUSH", string_length) == 0) {
 			new->comand_id = PUSH;
@@ -117,7 +119,6 @@ comand_stack_item * parse_input(char * input_file) {
 			new->comand_id = PRINT;
 		}
 		
-		new-> comand_id = BASE;
 		new-> next_comand = prev;
 
 		prev = new;

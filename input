@@ -1,3 +1,4 @@
 PRINT.
-JUMP.1
+ADD.
 PUSH.1
+PUSH.2
